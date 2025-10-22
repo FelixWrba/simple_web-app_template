@@ -1,0 +1,166 @@
+@import './base.css';
+
+a,
+a:visited {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.link, .link:visited {
+  text-decoration: underline;
+  color: var(--color-primary);
+}
+
+.page {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 16px;
+  min-height: 200vh;
+}
+
+h1 {
+  font-size: 2.5rem;
+  line-height: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: 2rem;
+  line-height: 2rem;
+  margin-bottom: 1rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+h1, h2, h3, h4 {
+  color: var(--color-heading);
+}
+
+p {
+  margin-bottom: 1rem;
+  line-height: 1.6rem;
+}
+
+.mb-4 {
+  margin-bottom: 16px;
+}
+
+.text-field {
+  outline: none;
+  border: 1px solid var(--color-border);
+  border-radius: 99px;
+  color: var(--color-text);
+  background-color: transparent;
+  padding: 4px 8px;
+}
+
+.text-field::placeholder,
+.text-area::placeholder {
+  color: var(--color-text-mute);
+  user-select: none;
+}
+
+.text-field:focus,
+.text-area:focus {
+  outline: 2px solid var(--color-border-strong);
+  outline-offset: 0px;
+}
+
+.text-area {
+  outline: none;
+  border: 1px solid var(--color-border);
+  border-radius: 1.25em;
+  color: var(--color-text);
+  background-color: transparent;
+  padding: 4px 8px;
+  resize: none;
+  field-sizing: content;
+  min-height: 12rem;
+}
+
+.switch {
+  position: relative;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  height: 1.25em;
+  width: 2.75em;
+  background-color: var(--color-bg-mute);
+  border: none;
+  border-radius: 99px;
+  transition: background-color .3s;
+  cursor: pointer;
+  outline: 2px solid var(--color-border-strong);
+  outline-offset: 0px;
+}
+
+.switch:focus-visible {
+  outline-color: var(--color-text);
+}
+
+.switch::before {
+  content: "";
+  position: absolute;
+  width: 1em;
+  height: 1em;
+  background-color: var(--color-border-strong);
+  left: 0.25em;
+  top: 0.125em;
+  border-radius: 99px;
+  transition: all .3s;
+}
+
+.switch:checked::before {
+  left: 1.5em;
+  background-color: var(--color-bg-mute);
+}
+
+.switch:checked {
+  background-color: var(--color-primary);
+  outline-color: var(--color-primary);
+}
+
+.btn {
+  user-select: none;
+  outline: none;
+  border: none;
+  border-radius: 4px;
+  color: var(--color-text-invert);
+  background-color: var(--color-primary);
+  padding: 4px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  font-weight: bold;
+}
+
+.btn:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.btn:active {
+  background-color: var(--color-primary-hover);
+}
+
+
+.btn.fade {
+  background-color: transparent;
+  color: var(--color-primary);
+  box-shadow: unset;
+}
+
+.btn.fade:hover {
+  background-color: var(--color-bg-soft);
+}
+
+.btn.fade:active {
+  background-color: var(--color-bg-mute);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--color-text);
+  outline-offset: 0px;
+}
