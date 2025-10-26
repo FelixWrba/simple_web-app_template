@@ -2,7 +2,7 @@
   <Teleport to='body'>
     <transition-group name="toast" tag="ul" class="toast-stack">
       <li v-for="toast in toastStore.toasts" :key="toast.id" :class="'toast ' + toast.status">
-        <span class="toast__status">{{ toast.status }}</span>
+        <span class="toast__status">{{ t('status.' + toast.status) }}</span>
         <p class="toast__text">{{ toast.text }}</p>
       </li>
     </transition-group>
@@ -11,8 +11,10 @@
 
 <script setup lang="ts">
 import { useToastStore } from '@/stores/toastStore';
+import { useI18n } from 'vue-i18n';
 
 const toastStore = useToastStore();
+const { t } = useI18n();
 </script>
 
 <style>

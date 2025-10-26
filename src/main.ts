@@ -2,13 +2,25 @@ import './assets/main.css'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
+import { createI18n } from 'vue-i18n'
 
 import App from './App.vue'
 import router from './router'
 
-const app = createApp(App)
+import de from '@/locales/de.json'
+import en from '@/locales/en.json'
 
-app.use(createPinia())
+const app = createApp(App)
+const pinia = createPinia();
+const i18n = createI18n({
+  locale: navigator.language.split('-')[0],
+  fallbackLocale: 'en',
+  legacy: false,
+  messages: { en, de }
+});
+
 app.use(router)
+app.use(pinia);
+app.use(i18n)
 
 app.mount('#app')

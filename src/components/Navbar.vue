@@ -1,17 +1,18 @@
 <template>
   <header :class="isScrolled ? 'shadow' : ''">
-    <button @click="isNavbarOpen = true" class="icon-btn" title="Navigation öffnen" aria-label="Navigation öffnen">
+    <button @click="isNavbarOpen = true" class="icon-btn" :title="t('nav.open-label')"
+      :aria-label="t('nav.open-label')">
       <Bars3Icon class="icon" />
     </button>
-    <span>Meine App</span>
+    <span>APP_NAME</span>
     <button class="icon-btn">
       <MagnifyingGlassIcon class="icon" />
     </button>
   </header>
 
   <nav :class="isNavbarOpen ? 'open' : ''">
-    <button class="icon-btn close-icon" @click="isNavbarOpen = false" title="Navigation schließen"
-      aria-label="Navigation schließen">
+    <button class="icon-btn close-icon" @click="isNavbarOpen = false" :title="t('nav.close-label')"
+      :aria-label="t('nav.close-label')">
       <XMarkIcon class="icon" />
     </button>
 
@@ -19,21 +20,28 @@
       <li v-for="link in links" :key="link.link" role="none">
         <router-link :to="link.link" role="menuitem">
           <component :is="link.icon" class="icon" />
-          <span>{{ link.name }}</span>
+          <span>{{ t(`${i18nPrefix}.${link.name}`) }}</span>
         </router-link>
       </li>
     </ul>
 
-    <p class="navbar-copyright">&copy;2025-{{ new Date().getFullYear() }} Felix Wrba. Alle Rechte vorbehalten.</p>
+    <p class="navbar-copyright">&copy;2025-{{ new Date().getFullYear() }} Felix Wrba. {{ t('nav.copy-text') }}</p>
   </nav>
 
   <button :class="`navbar-shadow ${isNavbarOpen ? 'open' : ''}`" @click="isNavbarOpen = false"
-    aria-label="Navigation schließen"></button>
+    :aria-label="t('nav.close-label')"></button>
 </template>
 
 <script lang="ts" setup>
 import { ref, type FunctionalComponent } from 'vue';
-import { Bars3Icon, MagnifyingGlassIcon, XMarkIcon, HomeIcon, InformationCircleIcon } from '@heroicons/vue/24/outline';
+import { Bars3Icon, MagnifyingGlassIcon, XMarkIcon } from '@heroicons/vue/24/outline';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
+const { links, i18nPrefix = 'links' } = defineProps<{
+  links: Link[];
+  i18nPrefix?: string
+}>();
 
 const isNavbarOpen = ref(false);
 const isScrolled = ref(false);
@@ -43,11 +51,6 @@ interface Link {
   link: string,
   icon: FunctionalComponent,
 }
-
-const links: Link[] = [
-  { name: 'Home', link: '/', icon: HomeIcon },
-  { name: 'About', link: '/about', icon: InformationCircleIcon }
-];
 
 window.addEventListener('scroll', () => {
   isScrolled.value = window.pageYOffset !== 0;
@@ -113,9 +116,6 @@ nav.open {
   background-color: var(--color-shadow);
   right: 0;
   transition: background-color 0.3s;
-}
-
-nav ul {
 }
 
 nav li a {

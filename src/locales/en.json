@@ -1,0 +1,38 @@
+{
+  "home": {
+    "title": "Hello, World!",
+    "message": "This is a hello-world message. Further information",
+    "link": "here",
+    "field": "Type here",
+    "area": "Enter a multi-line text"
+  },
+  "cta": {
+    "send": "Send",
+    "cancel": "Cancel"
+  },
+  "status": {
+    "info": "Info",
+    "success": "Success",
+    "warning": "Warning",
+    "error": "Error"
+  },
+  "nav": {
+    "open-label": "Open navigation",
+    "close-label": "Close navigation",
+    "copy-text": "All rights reserved."
+  },
+  "links": {
+    "home": "Home",
+    "about": "about",
+    "preferences": "Preferences"
+  },
+  "preferences": {
+    "title": "Preferences",
+    "presentation": "Presentation",
+    "mode": "Mode",
+    "auto": "Device",
+    "light": "Light",
+    "dark": "Dark",
+    "high": "High contrast"
+  }
+}

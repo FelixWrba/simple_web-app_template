@@ -1,0 +1,38 @@
+{
+  "home": {
+    "title": "Hallo, Welt!",
+    "message": "Dies ist eine Hallo-Welt Nachricht. Weitere Informationen findest du",
+    "link": "hier",
+    "field": "Hier eingeben",
+    "area": "Gebe etwas mehrzeiliges ein"
+  },
+  "cta": {
+    "send": "Abschicken",
+    "cancel": "Abbrechen"
+  },
+  "status": {
+    "info": "Info",
+    "success": "Erfolg",
+    "warning": "Warnung",
+    "error": "Fehler"
+  },
+  "nav": {
+    "open-label": "Navigation öffnen",
+    "close-label": "Navigation schließen",
+    "copy-text": "Alle Rechte vorbehalten."
+  },
+  "links": {
+    "home": "Zuhause",
+    "about": "Über",
+    "preferences": "Präferenzen"
+  },
+  "preferences": {
+    "title": "Präferenzen",
+    "presentation": "Darstellung",
+    "mode": "Modus",
+    "auto": "Gerät",
+    "light": "Hell",
+    "dark": "Dunkel",
+    "high": "Erhöhter Kontrast"
+  }
+}

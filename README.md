@@ -4,12 +4,12 @@ This is a simple Web-App template for creating Single-Page-Applications with off
 
 ## Features
 
-* Versatile Color palette
-* Pre-styled components
-* Automatic light/dark mode
-* SSR Landing Page
-* Internationalization
-* SPA Functionality
+* 🎨 Versatile Color palette
+* ✔️ Pre-styled components
+* ☀️ Automatic light/dark mode
+* 🤖 SSR Landing Page (In progress)
+* 💬 Internationalization
+* 💥 SPA Functionality
 
 ## Pre-styled Components
 * Ready-to-use responsive Navbar
@@ -19,6 +19,9 @@ This is a simple Web-App template for creating Single-Page-Applications with off
 * Auto-grow textarea ```<textarea class="text-area" placeholder=".."></textarea>```
 * Button variants: ```<button class="btn fade">..</button>```
 * Links: ```<router-link to="#" class="link">..</router-link>```
+
+## How to use
+<!-- TODO: ADD SESCTION -->
 
 ## Project Setup
 
