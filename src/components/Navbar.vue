@@ -83,6 +83,7 @@ nav {
   z-index: 11;
   position: fixed;
   border-right: 1px solid var(--color-border);
+  border-radius: 0px 1.5em 1.5em 0px;
   width: 80vw;
   max-width: 380px;
   top: 0;

@@ -11,16 +11,19 @@ import de from '@/locales/de.json'
 import en from '@/locales/en.json'
 
 const app = createApp(App)
-const pinia = createPinia();
+const pinia = createPinia()
+
+const locale = localStorage.getItem('locale') || 'detect';
+
 const i18n = createI18n({
-  locale: navigator.language.split('-')[0],
+  locale: locale === 'detect' ? navigator.language.split('-')[0] : locale,
   fallbackLocale: 'en',
   legacy: false,
   messages: { en, de }
 });
 
 app.use(router)
-app.use(pinia);
+app.use(pinia)
 app.use(i18n)
 
 app.mount('#app')

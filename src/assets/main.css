@@ -189,3 +189,15 @@ p {
   outline: 2px solid var(--color-text);
   outline-offset: 0px;
 }
+
+code {
+  padding: 4px;
+  border-radius: 4px;
+  background-color: var(--color-bg-mute);
+  font-family: monospace;
+  user-select: text;
+}
+
+code * {
+  background-color: var(--color-bg-mute);
+}

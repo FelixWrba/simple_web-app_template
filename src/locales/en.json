@@ -33,6 +33,11 @@
     "auto": "Device",
     "light": "Light",
     "dark": "Dark",
-    "high": "High contrast"
+    "high": "High contrast",
+    "contents": "Contents",
+    "language": "Language",
+    "detect": "Detect",
+    "en": "English",
+    "de": "German"
   }
 }

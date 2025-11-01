@@ -33,6 +33,11 @@
     "auto": "Gerät",
     "light": "Hell",
     "dark": "Dunkel",
-    "high": "Erhöhter Kontrast"
+    "high": "Erhöhter Kontrast",
+    "contents": "Inhalt",
+    "language": "Sprache",
+    "detect": "Erkennen",
+    "en": "Englisch",
+    "de": "Deutsch"
   }
 }
