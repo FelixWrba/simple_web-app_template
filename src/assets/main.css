@@ -102,10 +102,6 @@ p {
   outline-offset: 0px;
 }
 
-.switch:focus-visible {
-  outline-color: var(--color-text);
-}
-
 .switch::before {
   content: "";
   position: absolute;
@@ -126,6 +122,10 @@ p {
 .switch:checked {
   background-color: var(--color-primary);
   outline-color: var(--color-primary);
+}
+
+.switch:focus-visible {
+  outline-color: var(--color-text);
 }
 
 .dropdown {
@@ -200,4 +200,34 @@ code {
 
 code * {
   background-color: var(--color-bg-mute);
+}
+
+.icon {
+  height: 1.375rem;
+  stroke: var(--color-text);
+}
+
+.icon.fill {
+  fill: var(--color-text-mute);
+  stroke: none;
+}
+
+.icon.highlight {
+  fill: var(--color-primary);
+}
+
+.icon-btn {
+  display: flex;
+  justify-content: center;
+  border: none;
+  background-color: transparent;
+  padding: 0.5rem;
+  cursor: pointer;
+  color: inherit;
+  border-radius: 99px;
+  transition: background-color 0.2s;
+}
+
+.icon-btn:hover {
+  background-color: var(--color-border);
 }

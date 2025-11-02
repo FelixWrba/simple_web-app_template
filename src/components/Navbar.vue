@@ -18,8 +18,8 @@
 
     <ul role="menubar" @click="isNavbarOpen = false">
       <li v-for="link in links" :key="link.link" role="none">
-        <router-link :to="link.link" role="menuitem">
-          <component :is="link.icon" class="icon" />
+        <router-link :to="link.link" role="menuitem" :class="route.name === link.name ? 'highlight' : ''">
+          <component :is="link.icon" :class="`icon fill ${route.name === link.name ? 'highlight' : ''}`" />
           <span>{{ t(`${i18nPrefix}.${link.name}`) }}</span>
         </router-link>
       </li>
@@ -36,8 +36,11 @@
 import { ref, type FunctionalComponent } from 'vue';
 import { Bars3Icon, MagnifyingGlassIcon, XMarkIcon } from '@heroicons/vue/24/outline';
 import { useI18n } from 'vue-i18n';
+import { useRoute } from 'vue-router';
 
 const { t } = useI18n();
+const route = useRoute();
+
 const { links, i18nPrefix = 'links' } = defineProps<{
   links: Link[];
   i18nPrefix?: string
@@ -54,7 +57,7 @@ interface Link {
 
 window.addEventListener('scroll', () => {
   isScrolled.value = window.pageYOffset !== 0;
-})
+});
 </script>
 
 <style>
@@ -130,6 +133,11 @@ nav li a:hover {
   background-color: var(--color-bg-mute);
 }
 
+nav li a.highlight {
+  background-color: var(--color-bg-primary);
+  color: var(--color-primary-hover);
+}
+
 nav li span {
   flex: 1;
 }
@@ -143,26 +151,7 @@ nav li span {
   display: flex;
   align-items: end;
   justify-content: center;
-}
-
-.icon {
-  height: 1.25rem;
-}
-
-.icon-btn {
-  display: flex;
-  justify-content: center;
-  border: none;
-  background-color: transparent;
-  padding: 0.5rem;
-  cursor: pointer;
-  color: inherit;
-  border-radius: 99px;
-  transition: background-color 0.2s;
-}
-
-.icon-btn:hover {
-  background-color: var(--color-border);
+  text-align: center;
 }
 
 .close-icon {

@@ -27,9 +27,23 @@ export const usePreferenceStore = defineStore('preference', () => {
     storedPreferences ? JSON.parse(storedPreferences) : createPreferences(sections)
   );
 
-  watch(preferences, newPreferences =>updateStoredPreferences(newPreferences, locale), { deep: true });
+  watch(preferences, newPreferences => updateStoredPreferences(newPreferences), { deep: true });
 
-  return { preferences, sections };
+  function init(): void {
+    document.body.classList.value = preferences.value.presentation.high ? 'high' : getPreferredColorScheme(preferences.value.presentation.mode);
+  }
+
+  function updateStoredPreferences(newPreferences: any): void {
+    localStorage.setItem('preferences', JSON.stringify(newPreferences));
+
+    const newLocale = newPreferences.contents.language;
+    localStorage.setItem('locale', newLocale);
+    locale.value = (newLocale === 'detect' ? navigator.language.split('-')[0] : newLocale);
+
+    document.body.classList.value = preferences.value.presentation.high ? 'high' : getPreferredColorScheme(preferences.value.presentation.mode);
+  }
+
+  return { preferences, sections, init };
 });
 
 function createPreferences(sections: Section[]): object {
@@ -46,10 +60,9 @@ function createPreferences(sections: Section[]): object {
   return preferences;
 }
 
-function updateStoredPreferences(newPreferences: any, locale: WritableComputedRef<string, string>): void {
-  localStorage.setItem('preferences', JSON.stringify(newPreferences));
-
-  const newLocale = newPreferences.contents.language;
-  localStorage.setItem('locale', newLocale);
-  locale.value = (newLocale === 'detect' ? navigator.language.split('-')[0] : newLocale);
+function getPreferredColorScheme(setting: 'light' | 'dark' | 'auto'): 'light' | 'dark' {
+  if (setting === 'auto') {
+    return (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+  }
+  return setting;
 }
