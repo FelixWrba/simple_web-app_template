@@ -1,9 +1,12 @@
-type OptionStyle = 'switch' | 'dropdown';
+type OptionStyle = 'switch' | 'dropdown' | 'slider' | 'button';
+type OptionCallback = (event: InputEvent) => void;
+export type OptionValue = string | number | boolean;
 
-interface Option {
+export interface Option {
   label: string;
   style: OptionStyle;
   content?: string[];
+  callback?: OptionCallback; // NECESSARY
 }
 
 export interface Section {

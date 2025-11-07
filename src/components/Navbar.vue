@@ -73,8 +73,8 @@ header {
   align-items: center;
   background-color: var(--color-bg-primary);
   color: var(--color-text);
-  padding: 12px 8px;
-  font-size: 1.125rem;
+  padding: 0.75em 0.5em;
+  font-size: 1.125em;
   transition: all 0.3s;
 }
 

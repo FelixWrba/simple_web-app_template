@@ -13,7 +13,7 @@
 
 <style>
 footer {
-  padding: 32px;
+  padding: 2em;
   background-color: var(--color-bg-mute);
   color: var(--color-text-mute);
   font-size: 0.875em;
@@ -21,5 +21,9 @@ footer {
 
 footer strong {
   font-weight: bolder;
+}
+
+footer a.link {
+  color: var(--color-primary-hover);
 }
 </style>

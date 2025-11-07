@@ -1,5 +1,10 @@
 @import './base.css';
 
+*::selection {
+  background-color: var(--color-primary);
+  color: var(--color-text-invert);
+}
+
 a,
 a:visited {
   color: var(--color-text);
@@ -20,19 +25,19 @@ a:visited {
 }
 
 h1 {
-  font-size: 2.5rem;
+  font-size: 2.5em;
   line-height: 2.5rem;
   margin-bottom: 1rem;
 }
 
 h2 {
-  font-size: 2rem;
+  font-size: 2em;
   line-height: 2rem;
   margin-bottom: 1rem;
 }
 
 h3 {
-  font-size: 1.5rem;
+  font-size: 1.5em;
   line-height: 1.5rem;
   margin-bottom: 1rem;
 }
@@ -159,7 +164,7 @@ p {
   background-color: var(--color-primary);
   padding: 4px 16px;
   cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
+  transition: background-color 0.3s, color 0.3s, filter 0.3s;
   font-weight: bold;
 }
 
@@ -183,6 +188,14 @@ p {
 
 .btn.fade:active {
   background-color: var(--color-bg-mute);
+}
+
+.btn.danger {
+  background-color: var(--color-error);
+}
+
+.btn.danger:active {
+  filter: brightness(0.8);
 }
 
 .btn:focus-visible {

@@ -8,7 +8,8 @@
   },
   "cta": {
     "send": "Abschicken",
-    "cancel": "Abbrechen"
+    "cancel": "Abbrechen",
+    "confirm": "Bestätigen"
   },
   "status": {
     "info": "Info",
@@ -34,10 +35,16 @@
     "light": "Hell",
     "dark": "Dunkel",
     "high": "Erhöhter Kontrast",
+    "font-size": "Schriftgröße",
     "contents": "Inhalt",
     "language": "Sprache",
     "detect": "Erkennen",
     "en": "Englisch",
-    "de": "Deutsch"
+    "de": "Deutsch",
+    "data-cache": "Daten & Cache",
+    "reset-cache": "Cache leeren",
+    "reset-pref": "Präferenzen zurücksetzen",
+    "show-data": "Daten anzeigen",
+    "reset-data": "Alle Daten löschen"
   }
 }

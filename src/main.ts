@@ -13,7 +13,7 @@ import en from '@/locales/en.json'
 const app = createApp(App)
 const pinia = createPinia()
 
-const locale = localStorage.getItem('locale') || 'detect';
+const locale = localStorage.getItem('language') || 'detect';
 
 const i18n = createI18n({
   locale: locale === 'detect' ? navigator.language.split('-')[0] : locale,

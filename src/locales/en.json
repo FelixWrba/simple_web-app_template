@@ -8,7 +8,8 @@
   },
   "cta": {
     "send": "Send",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "confirm": "Confirm"
   },
   "status": {
     "info": "Info",
@@ -23,7 +24,7 @@
   },
   "links": {
     "home": "Home",
-    "about": "about",
+    "about": "About",
     "preferences": "Preferences"
   },
   "preferences": {
@@ -34,10 +35,16 @@
     "light": "Light",
     "dark": "Dark",
     "high": "High contrast",
+    "font-size": "Font size",
     "contents": "Contents",
     "language": "Language",
     "detect": "Detect",
     "en": "English",
-    "de": "German"
+    "de": "German",
+    "data-cache": "Data & Cache",
+    "reset-cache": "Clear cache",
+    "reset-pref": "Reset preferences",
+    "show-data": "Show data",
+    "reset-data": "Delete all data"
   }
 }
