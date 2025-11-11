@@ -1,5 +1,5 @@
 type OptionStyle = 'switch' | 'dropdown' | 'slider' | 'button';
-type OptionCallback = (event: InputEvent) => void;
+type OptionCallback = (event: any) => void;
 export type OptionValue = string | number | boolean;
 
 export interface Option {

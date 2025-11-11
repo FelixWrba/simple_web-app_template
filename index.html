@@ -1,13 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <link rel="icon" href="/favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>APP_NAME</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Landin Page on /</title>
+  <link rel="stylesheet" href="./src/assets/landing/style.css">
+</head>
+
+<body>
+  <header class="header">
+    <div class="header__content">
+      <h1 class="header__title">Haupttitel hier einfügen</h1>
+      <p class="header__description">Untertitel hier einfügen</p>
+      <div class="header__cta">
+        <a class="btn" href="/app.html">Linktext einfügen</a>
+        <button class="btn fade">Aktion einfügen</button>
+      </div>
+    </div>
+    <picture>
+
+    </picture>
+
+    <img src="./src/assets/landing/placeholder.webp" alt="Beschreibung des Hauptbildes" class="header__image"
+      height="200" />
+  </header>
+
+  <section class="section">
+    <h2 class="section__header">Kartensektionsüberschrift</h2>
+    <div class="card ripple">
+      <img src="./src/assets/landing/placeholder.webp" alt="Bildbeschreibung" class="card__image" />
+      <div class="card__content">
+        <h3 class="card__title">Kartenüberschrift</h3>
+        <p class="card__description">Kartenbeschreibung</p>
+      </div>
+    </div>
+    <div class="card ripple">
+      <img src="./src/assets/landing/placeholder.webp" alt="Bildbeschreibung" class="card__image" />
+      <div class="card__content">
+        <h3 class="card__title">Kartenüberschrift</h3>
+        <p class="card__description">Kartenbeschreibung</p>
+      </div>
+    </div>
+  </section>
+
+  <script src="./src/assets/landing/script.js" type="module"></script>
+</body>
+
 </html>
