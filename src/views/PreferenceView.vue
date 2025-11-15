@@ -18,10 +18,10 @@
         </select>
         <!-- SLIDER -->
         <input type="range" :min="option.content![0]" :max="option.content![1]" :step="option.content![2]"
-          :id="option.label" class="" v-else-if="option.style === 'slider'" v-model="preferences[title][option.label]" @input="option.callback">
+          :id="option.label" class="slider" v-else-if="option.style === 'slider'" v-model="preferences[title][option.label]" @input="option.callback">
         <!-- BUTTON -->
         <input type="button" :id="option.label" :class="'btn ' + (option.content ? option.content[0] : '')"
-          v-else-if="option.style === 'button'" :value="t('cta.confirm')" @click="() => { console.log(1) }">
+          v-else-if="option.style === 'button'" :value="t('cta.confirm')" @click="option.callback">
         <!-- ERROR -->
         <code v-else>Failed to render input: {{ option.style }}</code>
       </div>

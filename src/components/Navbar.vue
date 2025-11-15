@@ -1,10 +1,16 @@
 <template>
   <header :class="isScrolled ? 'shadow' : ''">
-    <button @click="isNavbarOpen = true" class="icon-btn" :title="t('nav.open-label')"
-      :aria-label="t('nav.open-label')">
+    <router-link :to="route.path.split('/').slice(0, -1).join('/')" v-if="isBackBar" class="icon-btn">
+      <ArrowLeftIcon class="icon" />
+    </router-link>
+
+    <button @click="isNavbarOpen = true" :title="t('nav.open-label')" class="icon-btn" :aria-label="t('nav.open-label')"
+      v-else>
       <Bars3Icon class="icon" />
     </button>
-    <span>APP_NAME</span>
+
+    <span>{{  'APP_NAME' }}</span>
+
     <button class="icon-btn">
       <MagnifyingGlassIcon class="icon" />
     </button>
@@ -33,8 +39,8 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, type FunctionalComponent } from 'vue';
-import { Bars3Icon, MagnifyingGlassIcon, XMarkIcon } from '@heroicons/vue/24/outline';
+import { ref, type FunctionalComponent, computed } from 'vue';
+import { Bars3Icon, MagnifyingGlassIcon, XMarkIcon, ArrowLeftIcon } from '@heroicons/vue/24/outline';
 import { useI18n } from 'vue-i18n';
 import { useRoute } from 'vue-router';
 
@@ -48,6 +54,7 @@ const { links, i18nPrefix = 'links' } = defineProps<{
 
 const isNavbarOpen = ref(false);
 const isScrolled = ref(false);
+const isBackBar = computed(() => (route.path.match(/\//g)?.length || 1) > 1);
 
 interface Link {
   name: string,
@@ -79,7 +86,7 @@ header {
 }
 
 header.shadow {
-  box-shadow: 0px -2px 20px var(--color-shadow);
+  box-shadow: var(--shadow-md);
 }
 
 nav {

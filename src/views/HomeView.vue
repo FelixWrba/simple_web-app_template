@@ -9,7 +9,7 @@ const toastStore = useToastStore();
 <template>
   <main class="page">
     <h1>{{ t('home.title') }}</h1>
-    <p>{{ t('home.message') }} <a href="#" class="link">{{ t('home.link') }}</a>.</p>
+    <p>{{ t('home.message') }} <router-link to="/about/info" class="link">{{ t('home.link') }}</router-link>.</p>
     <div style="display: flex; flex-direction: column; gap: 16px;">
       <input type="checkbox" class="switch" />
       <input type="text" class="text-field" :placeholder="t('home.field')">

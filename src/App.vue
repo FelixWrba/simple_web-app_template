@@ -5,6 +5,8 @@
 
   <RouterView />
 
+  <Confirm />
+
   <Footer />
 </template>
 
@@ -14,6 +16,7 @@ import Navbar from './components/Navbar.vue';
 import Footer from './components/Footer.vue';
 import { HomeIcon, ChatBubbleLeftEllipsisIcon, Cog6ToothIcon } from '@heroicons/vue/24/solid';
 import { usePreferenceStore } from './stores/preferenceStore';
+import Confirm from './components/Confirm.vue';
 
 const links = [
   { name: 'home', link: '/', icon: HomeIcon },

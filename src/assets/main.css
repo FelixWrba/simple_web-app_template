@@ -182,11 +182,17 @@ p {
   box-shadow: unset;
 }
 
-.btn.fade:hover {
+.btn.cancel {
+  background-color: transparent;
+  color: var(--color-error);
+  box-shadow: unset;
+}
+
+.btn.fade:hover, .btn.cancel:hover {
   background-color: var(--color-bg-soft);
 }
 
-.btn.fade:active {
+.btn.fade:active, .btn.cancel:active {
   background-color: var(--color-bg-mute);
 }
 
@@ -242,5 +248,57 @@ code * {
 }
 
 .icon-btn:hover {
+  background-color: var(--color-border);
+}
+
+.slider {
+  overflow: hidden;
+  width: 10em;
+  height: 1.25em;
+  -webkit-appearance: none;
+  background-color: var(--color-bg-mute);
+  border: 1px solid var(--color-border-strong);
+  border-radius: 99px;
+}
+
+.slider::-webkit-slider-runnable-track {
+  height: 1em;
+  -webkit-appearance: none;
+  color: var(--color-primary);
+  margin-top: -2px;
+}
+
+.slider::-webkit-slider-thumb {
+  width: 1.15em;
+  -webkit-appearance: none;
+  border-radius: 0.5em;
+  height: 1.15em;
+  cursor: ew-resize;
+  background: var(--color-primary-hover);
+  position: relative;
+  box-shadow: 0px 0px 16px rgb(255 255 255 / 0.3), -10.5rem 0 0 10rem var(--color-primary);
+  outline: 0.25em solid var(--color-primary-hover);
+  outline-offset: -0.25em;
+  transition: all 0.3s;
+}
+
+.slider::-webkit-slider-thumb:active {
+  box-shadow: 0px 0px 16px 16px rgb(255 255 255 / 0.5), -10.5rem 0 0 10rem var(--color-primary);
+  outline-offset: -0.1em;
+}
+
+.slider::-moz-range-progress {
+  background-color: var(--color-primary);
+}
+
+.slider::-moz-range-track {
+  background-color: var(--color-border);
+}
+
+.slider::-ms-fill-lower {
+  background-color: var(--color-primary);
+}
+
+.slider::-ms-fill-upper {
   background-color: var(--color-border);
 }

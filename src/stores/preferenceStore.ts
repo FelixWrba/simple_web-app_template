@@ -2,9 +2,11 @@ import { defineStore } from "pinia";
 import { type Section, type Option, type OptionValue } from "@/lib/types";
 import { ref } from "vue";
 import { useI18n } from "vue-i18n";
+import { useConfirm } from "@/lib/useConfirm";
 
 export const usePreferenceStore = defineStore('preference', () => {
   const { locale } = useI18n();
+  const { confirm } = useConfirm();
 
   const sections: Section[] = [
     {
@@ -55,7 +57,16 @@ export const usePreferenceStore = defineStore('preference', () => {
         { label: 'reset-cache', style: 'button', content: ['fade'] },
         { label: 'reset-pref', style: 'button', content: ['fade'] },
         { label: 'show-data', style: 'button' },
-        { label: 'reset-data', style: 'button', content: ['danger'] },
+        {
+          label: 'reset-data', style: 'button', content: ['danger'], async callback() {
+            const isPermitted = await confirm('Wollen Sie wirklich alle Daten löschen?', 'Diese Aktion kann nicht rückgängig gemacht werden.');
+
+            if(isPermitted) {
+              localStorage.clear();
+              window.location.reload();
+            }
+          }
+        },
       ],
     }
   ];

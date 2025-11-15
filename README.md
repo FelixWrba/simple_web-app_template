@@ -7,21 +7,39 @@ This is a simple Web-App template for creating Single-Page-Applications with off
 * 🎨 Versatile Color palette
 * ✔️ Pre-styled components
 * ☀️ Automatic light/dark mode
-* 🤖 SSR Landing Page (In progress)
+* 🤖 SSR Landing Page
 * 💬 Internationalization
 * 💥 SPA Functionality
+* ⚙ Settings Interface
 
 ## Pre-styled Components
 * Ready-to-use responsive Navbar
 * Toasts system
-* Switch: ```<input type="checkbox" class="switch" />```
-* Input field: ```<input type="text" class="text-field" placeholder="..">```
-* Auto-grow textarea ```<textarea class="text-area" placeholder=".."></textarea>```
-* Button variants: ```<button class="btn fade">..</button>```
-* Links: ```<router-link to="#" class="link">..</router-link>```
+* Confirm modals
+* Input methods
+* Buttons
+* Links
 
 ## How to use
-<!-- TODO: ADD SESCTION -->
+```js
+// Navbar ------------------------------
+<Navbar :links />
+const links: Link[] = /* your links*/;
+
+// Toast system ------------------------------
+<Toaster />
+const toastStore = useToastStore();
+toastStore.push('<your message>')
+
+// Confirm modal ------------------------------
+<Confirm />
+const { confirm } = useConfirm();
+
+(async () => {
+    const isConfirmed = await confirm('<title>', /* ... */);
+    // <your logic>
+})();
+```
 
 ## Project Setup
 
