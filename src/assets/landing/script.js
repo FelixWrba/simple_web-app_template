@@ -5,7 +5,6 @@ document.querySelectorAll('.btn, .ripple').forEach(btn =>
       const target = (e.target.classList.contains('btn') || e.target.classList.contains('ripple'))
       ? e.target :
       e.target.offsetParent;
-      console.log(target)
       target.appendChild(ripple);
       ripple.style.left = e.pageX -target.offsetLeft + 'px';
       ripple.style.top = e.pageY -target.offsetTop + 'px';

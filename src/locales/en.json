@@ -20,12 +20,15 @@
   "nav": {
     "open-label": "Open navigation",
     "close-label": "Close navigation",
+    "search-label": "Toggle visibility of searchbar",
+    "search-placeholder": "Search here",
     "copy-text": "All rights reserved."
   },
   "links": {
     "home": "Home",
     "about": "About",
-    "preferences": "Preferences"
+    "preferences": "Preferences",
+    "info": "Info"
   },
   "preferences": {
     "title": "Preferences",

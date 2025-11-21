@@ -24,10 +24,6 @@ const router = createRouter({
       name: 'preferences',
       component: () => import('../views/PreferenceView.vue'),
     },
-    {
-      path: '/:pathMatch(.*)*',
-      redirect: '/',
-    }
   ],
 })
 

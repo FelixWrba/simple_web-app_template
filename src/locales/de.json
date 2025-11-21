@@ -20,12 +20,15 @@
   "nav": {
     "open-label": "Navigation öffnen",
     "close-label": "Navigation schließen",
+    "search-label": "Sichtbarkeit der Suchleiste umschalten",
+    "search-placeholder": "Hier suchen",
     "copy-text": "Alle Rechte vorbehalten."
   },
   "links": {
     "home": "Zuhause",
     "about": "Über",
-    "preferences": "Präferenzen"
+    "preferences": "Präferenzen",
+    "info": "Info"
   },
   "preferences": {
     "title": "Präferenzen",

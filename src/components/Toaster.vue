@@ -36,7 +36,7 @@ const { t } = useI18n();
   display: block;
   flex: 1;
   padding: 4px 12px;
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--shadow-md);
   border-radius: 4px;
   border: 1px solid var(--color-border);
   border-left: 4px solid var(--color-info);

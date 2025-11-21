@@ -1,27 +1,32 @@
 <template>
+  <!-- HEADER -->
   <header :class="isScrolled ? 'shadow' : ''">
+    <!-- BACK BUTTON -->
     <router-link :to="route.path.split('/').slice(0, -1).join('/')" v-if="isBackBar" class="icon-btn">
       <ArrowLeftIcon class="icon" />
     </router-link>
-
+    <!-- MENU BUTTON -->
     <button @click="isNavbarOpen = true" :title="t('nav.open-label')" class="icon-btn" :aria-label="t('nav.open-label')"
       v-else>
       <Bars3Icon class="icon" />
     </button>
-
+    <!-- APP LOGO -->
     <span>{{  'APP_NAME' }}</span>
-
-    <button class="icon-btn">
+    <!-- SEARCH BUTTON -->
+    <button class="icon-btn" @click="isSearchBarOpen = !isSearchBarOpen" :title="t('nav.search-label')" :aria-label="t('nav.search-label')">
       <MagnifyingGlassIcon class="icon" />
     </button>
+    <Search :isOpen="isSearchBarOpen" />
   </header>
 
+  <!-- NAVIGATION -->
   <nav :class="isNavbarOpen ? 'open' : ''">
+    <!-- CLOSE BUTTON -->
     <button class="icon-btn close-icon" @click="isNavbarOpen = false" :title="t('nav.close-label')"
       :aria-label="t('nav.close-label')">
       <XMarkIcon class="icon" />
     </button>
-
+    <!-- LINKS -->
     <ul role="menubar" @click="isNavbarOpen = false">
       <li v-for="link in links" :key="link.link" role="none">
         <router-link :to="link.link" role="menuitem" :class="route.name === link.name ? 'highlight' : ''">
@@ -30,10 +35,11 @@
         </router-link>
       </li>
     </ul>
-
+    <!-- COPYRIGHT -->
     <p class="navbar-copyright">&copy;2025-{{ new Date().getFullYear() }} Felix Wrba. {{ t('nav.copy-text') }}</p>
   </nav>
 
+  <!-- NAVIGATION SHADOW -->
   <button :class="`navbar-shadow ${isNavbarOpen ? 'open' : ''}`" @click="isNavbarOpen = false"
     :aria-label="t('nav.close-label')"></button>
 </template>
@@ -43,6 +49,7 @@ import { ref, type FunctionalComponent, computed } from 'vue';
 import { Bars3Icon, MagnifyingGlassIcon, XMarkIcon, ArrowLeftIcon } from '@heroicons/vue/24/outline';
 import { useI18n } from 'vue-i18n';
 import { useRoute } from 'vue-router';
+import Search from './Search.vue';
 
 const { t } = useI18n();
 const route = useRoute();
@@ -55,6 +62,7 @@ const { links, i18nPrefix = 'links' } = defineProps<{
 const isNavbarOpen = ref(false);
 const isScrolled = ref(false);
 const isBackBar = computed(() => (route.path.match(/\//g)?.length || 1) > 1);
+const isSearchBarOpen = ref(false);
 
 interface Link {
   name: string,
