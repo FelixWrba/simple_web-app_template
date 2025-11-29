@@ -1,5 +1,5 @@
 <template>
-  <dialog :open="isDialogOpen" class="confirm">
+  <dialog ref="confirm-modal" class="confirm" @close="confirmFalse">
     <h3 class="confirm__title">{{ dialogOptions.title }}</h3>
     <p class="confirm__description" v-if="dialogOptions.description">{{ dialogOptions.description }}</p>
 
@@ -16,11 +16,27 @@
 </template>
 
 <script setup lang="ts">
+import { useTemplateRef, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useConfirm } from '@/lib/useConfirm';
 
 const { t } = useI18n();
 const { confirmTrue, confirmFalse, dialogOptions, isDialogOpen } = useConfirm();
+
+const confirmModalRef = useTemplateRef('confirm-modal');
+
+watch(isDialogOpen, newIsOpen => {
+  if (newIsOpen) {
+    confirmModalRef.value?.showModal();
+  }
+  else {
+    confirmModalRef.value?.classList.add('close');
+    setTimeout(() => {
+      confirmModalRef.value?.close();
+      confirmModalRef.value?.classList.remove('close');
+    }, 300);
+  }
+});
 </script>
 
 <style>
@@ -38,7 +54,7 @@ const { confirmTrue, confirmFalse, dialogOptions, isDialogOpen } = useConfirm();
   box-shadow: var(--shadow-lg);
   background-color: var(--color-bg);
   z-index: 5;
-  transition: scale 0.3s;
+  transition: all 0.2s ease-in;
 }
 
 .confirm__title {
@@ -52,31 +68,42 @@ const { confirmTrue, confirmFalse, dialogOptions, isDialogOpen } = useConfirm();
   margin-bottom: 1.5em;
 }
 
-.confirm::backdrop {
-  background-color: var(--color-shadow);
-}
-
 .confirm__cta {
   display: flex;
   justify-content: flex-end;
   gap: 8px;
 }
 
-.confirm:has(.confirm__cta button:active) {
-  scale: 0.9;
+.confirm::backdrop {
+  background-color: var(--color-shadow);
+  animation: fade-shadow 0.2s ease-out;
+  transition: background-color 0.2s ease-in;
 }
 
-.confirm[open] {
-  animation: fade-in 0.3s ease-out;
+.confirm.close::backdrop {
+  background-color: transparent;
+}
+
+body:has(.confirm[open]) {
+  overflow: hidden;
+}
+
+.confirm[open]:not(.close) {
+  animation: fade-in 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.confirm.close {
+  opacity: 0;
+  transform: translateX(-50%) translateY(-2em);
 }
 
 @keyframes fade-in {
-  from {
+  0% {
     opacity: 0;
     transform: translateX(-50%) translateY(-2em);
   }
 
-  to {
+  100% {
     opacity: 1;
     transform: translateX(-50%) translateY(0em);
   }
@@ -93,18 +120,39 @@ const { confirmTrue, confirmFalse, dialogOptions, isDialogOpen } = useConfirm();
     border: none;
     border-top: 1px solid var(--color-border);
     border-radius: 1.5em 1.5em 0px 0px;
+    box-shadow: 0px 200px 0px var(--color-bg);
+  }
+
+  .confirm.close {
+    opacity: 0;
+    transform: translateX(-50%) translateY(100%);
+    transform-origin: 100% 100%;
+    scale: 1 0;
   }
 
   @keyframes fade-in {
-    from {
+    0% {
       opacity: 0;
-      transform: translateX(-50%) translateY(2em);
+      transform: translateX(-50%) translateY(100%);
+      scale: 1 0;
+      transform-origin: 100% 100%;
     }
 
-    to {
+    100% {
       opacity: 1;
-      transform: translateX(-50%) translateY(0em);
+      transform: translateX(-50%) translateY(0px);
+      transform-origin: center;
     }
+  }
+}
+
+@keyframes fade-shadow {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
   }
 }
 </style>

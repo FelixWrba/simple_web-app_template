@@ -119,6 +119,10 @@ nav.open {
   left: 0;
 }
 
+body:has(nav.open) {
+  overflow: hidden;
+}
+
 .navbar-shadow {
   border: none;
   z-index: 10;

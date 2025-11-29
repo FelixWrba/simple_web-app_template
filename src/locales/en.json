@@ -49,5 +49,13 @@
     "reset-pref": "Reset preferences",
     "show-data": "Show data",
     "reset-data": "Delete all data"
+  },
+  "footer": {
+    "copy": "Copyright",
+    "reserved": "All rights reserved.",
+    "contact": "Contact",
+    "ressources": "Ressources",
+    "landing": "Landing page", 
+    "imprint": "Imprint"
   }
 }

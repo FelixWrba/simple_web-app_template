@@ -1,6 +1,6 @@
 # Simple Web-App Template
 
-This is a simple Web-App template for creating Single-Page-Applications with offline capabilities quickly. It uses Vite as a Built-Tool and Vue JS with TypeScript. It comes with pre-styled components and interactive systems.
+This is a simple Web-App template for creating Single-Page-Applications with offline capabilities quickly. It uses Vite as a Build-Tool and Vue 3 with TypeScript. It comes with pre-styled components and interactive systems.
 
 ## Features
 
@@ -21,6 +21,8 @@ This is a simple Web-App template for creating Single-Page-Applications with off
 * Links
 
 ## How to use
+
+### Components
 ```js
 // Navbar ------------------------------
 <Navbar :links />
@@ -43,9 +45,22 @@ const { confirm } = useConfirm();
 
 ## Project Setup
 
+### Install dependencies
+
 ```sh
 npm install
 ```
+
+### Generate all icons
+
+To automatically generate all required icons for your PWA, follow these steps:
+1. Create a maskable, square icon with at least 512px in width.
+2. Save the file to public/base.png
+3. Run this command: ```node utils/generateIcons.js public/base.png public/icons```
+4. Follow further instrcutions
+
+### Configure PWA
+Modify the properties of VitePWA in vite.config.ts to custimize the app to your preferences.
 
 ### Compile and Hot-Reload for Development
 
