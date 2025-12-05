@@ -11,16 +11,17 @@
       <Bars3Icon class="icon" />
     </button>
     <!-- APP LOGO -->
-    <span>{{  'APP_NAME' }}</span>
+    <span>{{ 'APP_NAME' }}</span>
     <!-- SEARCH BUTTON -->
-    <button class="icon-btn" @click="isSearchBarOpen = !isSearchBarOpen" :title="t('nav.search-label')" :aria-label="t('nav.search-label')">
+    <button class="icon-btn" @click="isSearchBarOpen = !isSearchBarOpen" :title="t('nav.search-label')"
+      :aria-label="t('nav.search-label')">
       <MagnifyingGlassIcon class="icon" />
     </button>
-    <Search :isOpen="isSearchBarOpen" />
+    <Search :isOpen="isSearchBarOpen" @close="isSearchBarOpen = false" />
   </header>
 
   <!-- NAVIGATION -->
-  <nav :class="isNavbarOpen ? 'open' : ''">
+  <nav :class="isNavbarOpen ? 'open' : ''" @touchstart="setLastTouch" @touchend="applyTouch">
     <!-- CLOSE BUTTON -->
     <button class="icon-btn close-icon" @click="isNavbarOpen = false" :title="t('nav.close-label')"
       :aria-label="t('nav.close-label')">
@@ -59,20 +60,35 @@ const { links, i18nPrefix = 'links' } = defineProps<{
   i18nPrefix?: string
 }>();
 
-const isNavbarOpen = ref(false);
-const isScrolled = ref(false);
-const isBackBar = computed(() => (route.path.match(/\//g)?.length || 1) > 1);
-const isSearchBarOpen = ref(false);
-
 interface Link {
   name: string,
   link: string,
   icon: FunctionalComponent,
 }
 
+const isNavbarOpen = ref(false);
+const isScrolled = ref(false);
+const isBackBar = computed(() => (route.path.match(/\//g)?.length || 1) > 1);
+const isSearchBarOpen = ref(false);
+
 window.addEventListener('scroll', () => {
   isScrolled.value = window.pageYOffset !== 0;
 });
+
+const lastTouchPosition = ref({ x: 0, y: 0 });
+
+function setLastTouch(event: TouchEvent) {
+  lastTouchPosition.value = { x: event.touches[0]?.clientX || 0, y: event.touches[0]?.clientY || 0 };
+}
+
+function applyTouch(event: TouchEvent) {
+  const distanceX = (event.changedTouches[0]?.clientX || 0) - lastTouchPosition.value.x;
+  const distanceY = (event.changedTouches[0]?.clientY || 0) - lastTouchPosition.value.y;
+
+  if (distanceX < -50 && Math.abs(distanceY) * -3 > distanceX) {
+    isNavbarOpen.value = false;
+  }
+}
 </script>
 
 <style>

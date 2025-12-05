@@ -1,15 +1,21 @@
 <template>
   <transition name="search-fade">
     <div class="search__container" v-show="isOpen">
+      <!-- INPUT -->
       <div class="searchbar">
-        <input type="search" id="searchbar" :placeholder="t('nav.search-placeholder')" autocomplete="off" v-model="search"  :aria-label="t('nav.search-placeholder')">
         <label class="icon-btn" for="searchbar">
           <MagnifyingGlassIcon class="icon" />
         </label>
+        <input type="search" id="searchbar" :placeholder="t('nav.search-placeholder')" autocomplete="off"
+          v-model="search" :aria-label="t('nav.search-placeholder')">
+        <button class="icon-btn" @click="emit('close')">
+          <XMarkIcon class="icon" />
+        </button>
       </div>
+      <!-- RESULTS -->
       <ol class="search__results">
         <transition-group name="search-list">
-          <li v-for="result in searchResults" :key="result.name">
+          <li v-for="result in searchResults" :key="result.name" @click="emit('close')">
             <router-link :to="result.link" tabindex="0">{{ t('links.' + result.name) }}</router-link>
           </li>
           <li v-show="searchResults.length === 0" key="error-no-results" class="search__error">
@@ -20,16 +26,21 @@
       </ol>
     </div>
   </transition>
+  <!-- SHADOW -->
+  <transition name="shadow-fade">
+    <div class="search__shadow" @click="emit('close')" v-if="isOpen"></div>
+  </transition>
 </template>
 
 <script lang="ts" setup>
 import { ref, computed } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { MagnifyingGlassIcon, FaceFrownIcon } from '@heroicons/vue/24/outline';
+import { MagnifyingGlassIcon, XMarkIcon, FaceFrownIcon } from '@heroicons/vue/24/outline';
 import { useRouter } from 'vue-router';
 
 const { t } = useI18n();
 const { isOpen } = defineProps<{ isOpen: boolean }>();
+const emit = defineEmits<{ close: [] }>();
 
 interface SearchResult {
   name: string;
@@ -56,35 +67,46 @@ function sanitizeInput(input: string): string {
 .search__container {
   position: absolute;
   top: 0.5em;
-  right: 3em;
-  transform-origin: 100% 1.5em;
+  right: 0.5em;
+  max-width: 80vw;
+  max-height: 80vh;
+  z-index: 10;
 }
 
-.search__error {
+.searchbar {
   display: flex;
-  flex-direction: column;
-  gap: 0.25em;
   align-items: center;
-  padding: 0.5em;
+  background-color: var(--color-bg);
+  overflow: hidden;
+  border-radius: 0.5em 0.5em 0 0;
+  box-shadow: var(--shadow-md);
+  padding: 0.75em;
 }
 
-.search__error p {
-  margin: 0;
+.searchbar input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  min-width: 2em;
 }
 
-.search__error svg {
-  height: 2em;
+.searchbar input::-webkit-search-cancel-button {
+  display: none;
+}
+
+.searchbar:has(input:focus-visible) {
+  outline: 2px solid var(--color-border-strong);
 }
 
 .search__results {
   list-style-type: none;
-  margin-top: 1em;
+  margin-top: 0.5em;
   background-color: var(--color-bg);
-  border-radius: 0.5em;
+  border-radius: 0 0 0.5em 0.5em;
   box-shadow: var(--shadow-md);
   overflow: auto;
   max-height: 80vh;
-  max-width: 50vw;
 }
 
 .search__results a {
@@ -103,20 +125,30 @@ function sanitizeInput(input: string): string {
   outline-offset: -1px;
 }
 
-.searchbar {
+.search__error {
   display: flex;
+  flex-direction: column;
+  gap: 0.25em;
   align-items: center;
-  background-color: var(--color-bg);
-  box-shadow: var(--shadow-md);
-  border-radius: 0.5em;
-  overflow: hidden;
+  padding: 0.5em;
 }
 
-.searchbar input {
-  flex: 1;
-  padding: 0.5em;
-  border: none;
-  outline: none;
+.search__error p {
+  margin: 0;
+}
+
+.search__error svg {
+  height: 2em;
+}
+
+.search__shadow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: var(--color-shadow);
+  height: 100vh;
+  width: 100vw;
+  z-index: 9;
 }
 
 @media(max-width: 550px) {
@@ -125,27 +157,46 @@ function sanitizeInput(input: string): string {
   }
 
   .search__container {
-    left: 3em;
+    top: 0;
+    left: 0;
+    right: 0;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .searchbar {
+    border-radius: 0em;
+  }
+
+  .search__results {
+    border-top: 2px solid var(--color-border);
+    margin-top: 0em;
   }
 }
 
-.searchbar:has(input:focus-visible) {
-  outline: 2px solid var(--color-border-strong);
-}
-
+/* CONTAINER */
 .search-fade-enter-from,
 .search-fade-leave-to {
   scale: 0;
+  opacity: 0;
+  transform-origin: 100% 0%;
+}
+
+.shadow-fade-enter-from,
+.shadow-fade-leave-to {
   opacity: 0;
 }
 
 .search-fade-enter-active,
 .search-fade-leave-active,
 .search-list-enter-active,
-.search-list-leave-active {
+.search-list-leave-active,
+.shadow-fade-enter-active,
+.shadow-fade-leave-active {
   transition: all 0.3s;
 }
 
+/* LIST */
 .search-list-enter-from,
 .search-list-leave-to {
   opacity: 0;

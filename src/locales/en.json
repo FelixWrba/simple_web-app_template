@@ -11,11 +11,13 @@
     "cancel": "Cancel",
     "confirm": "Confirm"
   },
-  "status": {
+  "toast": {
     "info": "Info",
     "success": "Success",
     "warning": "Warning",
-    "error": "Error"
+    "error": "Error",
+    "pin": "Pin notification",
+    "close": "Close notification"
   },
   "nav": {
     "open-label": "Open navigation",

@@ -4,7 +4,7 @@
     <h2>Über uns</h2>
     <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Provident, nulla. Autem, dolorum. Voluptas assumenda
       dolorem eligendi ducimus nobis praesentium eveniet quae possimus. Illo aperiam deleniti omnis. Quibusdam fuga
-      dicta quis.</p>
+      dicta quis: <router-link to="/about/info" class="link">hic</router-link></p>
     <h2>Kontakt</h2>
     <h3>E-Mail</h3>
     <p>name@domain.com</p>

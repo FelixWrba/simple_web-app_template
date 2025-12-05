@@ -59,9 +59,9 @@ export const usePreferenceStore = defineStore('preference', () => {
         { label: 'show-data', style: 'button' },
         {
           label: 'reset-data', style: 'button', content: ['danger'], async callback() {
-            const isPermitted = await confirm('Wollen Sie wirklich alle Daten löschen?', 'Diese Aktion kann nicht rückgängig gemacht werden.');
+            const isPermitted = await confirm('Wollen Sie wirklich alle Daten löschen?', { description: 'Diese Aktion kann nicht rückgängig gemacht werden.' });
 
-            if(isPermitted) {
+            if (isPermitted) {
               localStorage.clear();
               window.location.reload();
             }

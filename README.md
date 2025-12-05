@@ -31,15 +31,15 @@ const links: Link[] = /* your links*/;
 // Toast system ------------------------------
 <Toaster />
 const toastStore = useToastStore();
-toastStore.push('<your message>')
+toastStore.push('<message>', '<status>');
 
 // Confirm modal ------------------------------
 <Confirm />
 const { confirm } = useConfirm();
 
 (async () => {
-    const isConfirmed = await confirm('<title>', /* ... */);
-    // <your logic>
+    const isConfirmed = await confirm('<title>', { '<options>' });
+    // further processing
 })();
 ```
 
@@ -57,7 +57,7 @@ To automatically generate all required icons for your PWA, follow these steps:
 1. Create a maskable, square icon with at least 512px in width.
 2. Save the file to public/base.png
 3. Run this command: ```node utils/generateIcons.js public/base.png public/icons```
-4. Follow further instrcutions
+4. Follow further instructions
 
 ### Configure PWA
 Modify the properties of VitePWA in vite.config.ts to custimize the app to your preferences.

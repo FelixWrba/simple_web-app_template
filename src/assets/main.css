@@ -251,6 +251,12 @@ code * {
   background-color: var(--color-border);
 }
 
+.icon-btn:disabled, .icon-btn:disabled:hover {
+  cursor: not-allowed;
+  background-color: transparent;
+  opacity: 0.7 !important;
+}
+
 .slider {
   overflow: hidden;
   width: 10em;

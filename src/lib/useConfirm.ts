@@ -22,11 +22,14 @@ let dialogResolver: (value: boolean) => void;
 
 export function useConfirm() {
 
-  function confirm(
-    title: string, description: string = '', destructive: boolean = true, confirmText: string = 'cta.confirm', cancelText: string = 'cta.cancel'
-  ) {
-    dialogOptions.value = { title, description, destructive, confirmText, cancelText };
-
+  function confirm(title: string, options: Partial<Omit<DialogOptions, 'title'>>) {
+    dialogOptions.value = {
+      title,
+      description: options.description || '',
+      confirmText: options.confirmText || 'cta.confirm',
+      cancelText: options.cancelText || 'cta.cancel',
+      destructive: options.destructive || false
+    };
     isDialogOpen.value = true;
 
     return new Promise<boolean>(resolve => dialogResolver = resolve);

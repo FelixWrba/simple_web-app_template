@@ -17,7 +17,7 @@ const router = createRouter({
     {
       path: '/about/info',
       name: 'info',
-      component: ()=>import('../views/InfoView.vue'),
+      component: () => import('../views/InfoView.vue'),
     },
     {
       path: '/preferences',
@@ -25,6 +25,13 @@ const router = createRouter({
       component: () => import('../views/PreferenceView.vue'),
     },
   ],
+})
+
+router.beforeEach((to, from, next) => {
+  to.meta.depth = to.path.match(/\//g)?.length || 1
+  to.meta.prevDepth = from.path.match(/\//g)?.length || 1
+
+  next()
 })
 
 export default router
